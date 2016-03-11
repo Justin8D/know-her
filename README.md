@@ -1,2 +1,2 @@
 # know-her
-My first bot
+My first bot, and I don't even know 'er!

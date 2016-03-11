@@ -12,11 +12,11 @@ def random_er
 end
 
 def er_text
-  "#{@er_word.capitalize}?! I don't even KNOW 'er!"
+  "#{@er_word.capitalize}?! I don't even KNOW her!"
 end
 
 def search_url(query)
-  "https://api.imgur.com/3/gallery/search?q=#{query}"
+  "https://api.imgur.com/3/gallery/search/top/week/search?q=#{query}"
 end
 
 def curl_cmd(client_id, url)

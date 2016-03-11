@@ -1,6 +1,6 @@
 require 'twitter'
 require 'tempfile'
-require 'RMagick'
+require 'rmagick'
 require 'dotenv'
 require 'ostruct'
 include Magick
@@ -27,9 +27,7 @@ def random_imgur_url
   json = `#{curl_cmd(ENV['IMGUR_CLIENT_ID'], search_url(@er_word))}`
   response = JSON.parse(json, symbolize_names: true,
                               object_class: OpenStruct)
-  sfw_urls = response.data.reject(&:nsfw)
-                          .reject(&:animated)
-                          .map(&:link).first
+  sfw_urls = response.data.map(&:link).first
 end
 
 def image(url)

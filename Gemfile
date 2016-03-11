@@ -4,4 +4,4 @@ source 'https://rubygems.org'
 
 gem 'twitter'
 gem 'dotenv'
-gem 'rmagick', require: 'RMagick'
+gem 'rmagick', require: 'rmagick'

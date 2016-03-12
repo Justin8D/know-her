@@ -3,6 +3,8 @@ require 'tempfile'
 require 'rmagick'
 require 'dotenv'
 require 'ostruct'
+require 'open-uri'
+require 'rubygems'
 include Magick
 
 Dotenv.load
@@ -33,7 +35,7 @@ def random_imgur_url
 end
 
 def image(url)
-  file = Tempfile.new('last_panel')
+  file = Tempfile.new('er image')
   file.write(`curl -s #{url}`)
   file.rewind
   bin = File.open(file,'r'){ |f| f.read }

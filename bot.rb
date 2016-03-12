@@ -37,6 +37,7 @@ def image(url)
   file.write(`curl -s #{url}`)
   file.rewind
   bin = File.open(file,'r'){ |f| f.read }
+  return nil unless bin.length > 0
   image = Image.from_blob(bin).first
   image.change_geometry!('500x') { |c,r,i| i.resize!(c,r) }
 
@@ -54,10 +55,27 @@ client = Twitter::REST::Client.new do |config|
   config.access_token_secret = ENV['TWITTER_OAUTH_SECRET']
 end
 
-begin
+
+
+@good_image = nil
+
+while @good_image == nil do
   random_er
-  tries ||= 5
-  client.update_with_media(er_text, image(random_imgur_url))
-rescue Twitter::Error => e
-  retry unless (tries -= 1).zero?
+  @good_image = image(random_imgur_url)
 end
+
+begin
+   tries ||= 5
+   client.update_with_media(er_text, @good_image)
+ rescue Twitter::Error => e
+  retry unless (tries -= 1).zero?
+ end
+
+
+#begin
+#  random_er
+#  tries ||= 5
+#  client.update_with_media(er_text, image(random_imgur_url))
+#rescue Twitter::Error => e
+#  retry unless (tries -= 1).zero?
+#end

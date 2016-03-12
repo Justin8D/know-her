@@ -70,12 +70,3 @@ begin
  rescue Twitter::Error => e
   retry unless (tries -= 1).zero?
  end
-
-
-#begin
-#  random_er
-#  tries ||= 5
-#  client.update_with_media(er_text, image(random_imgur_url))
-#rescue Twitter::Error => e
-#  retry unless (tries -= 1).zero?
-#end

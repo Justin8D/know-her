@@ -31,6 +31,9 @@ def random_imgur_url
                               object_class: OpenStruct)
   sfw_urls = response.data.reject(&:nsfw)
                           .reject(&:animated)
+                          .reject(&:gifv)
+                          .reject(&:mp4)
+                          .reject(&:webm)
                           .map(&:link).first
 end
 

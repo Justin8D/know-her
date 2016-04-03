@@ -21,7 +21,8 @@ end
 def random_word
   er_words = wordnik_parse(open(@er_url).read)
   or_words = wordnik_parse(open(@or_url).read)
-  @words = er_words + or_words
+  bad_words = %w[nigger hitler]
+  @words = er_words + or_words - bad_words
 end
 
 def er_text
